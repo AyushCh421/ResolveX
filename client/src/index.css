@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #1b2433;
+  --color-muted: #5b6778;
+  --color-faint: #8a94a3;
+  --color-paper: #f3f5f8;
+  --color-line: #dde2ea;
+  --color-brand: #1f4fd8;
+  --color-brand-dark: #173ba6;
+  --color-brand-tint: #e8eefc;
+  --color-signal: #f5a524;
+  --color-signal-tint: #fdf1d9;
+  --color-ok: #1e8e5a;
+  --color-ok-tint: #dff3e8;
+  --color-bad: #c2413b;
+  --color-bad-tint: #fbe5e3;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    line-height: 1.55;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-outline {
+    @apply border border-line bg-white text-ink hover:border-faint hover:bg-paper;
+  }
+  .btn-danger {
+    @apply border border-bad/30 bg-white text-bad hover:bg-bad-tint;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink placeholder:text-faint transition-colors hover:border-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20;
+  }
+  .field-error {
+    @apply mt-1.5 text-[13px] text-bad;
+  }
+  .panel {
+    @apply rounded-xl border border-line bg-white;
+  }
+}
+
+/* Used once, on the sign-in page: ticket stubs with a torn edge. */
+.stub {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+}
+.stub::before {
+  content: "";
+  position: absolute;
+  left: 76px;
+  top: 8px;
+  bottom: 8px;
+  border-left: 2px dashed var(--color-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
