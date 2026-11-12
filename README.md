@@ -2,8 +2,8 @@
 
 ResolveX is a MERN web app where students report campus problems (broken lights, leaking taps, bad Wi-Fi), follow each complaint until it is fixed, and talk to the administrators handling it. Administrators get one place to search, prioritise, assign and resolve complaints, with analytics on how the campus is doing.
 
-**Live app:** _add your Vercel URL_  
-**API:** _add your Render URL_ (`/api/health` should return `{"status":"ok"}`)
+**Live app:** https://resolve-x-alpha-sandy.vercel.app  
+**API:** https://resolvex-mqxp.onrender.com (`/api/health` should return `{"status":"ok"}`)
 
 ## The problem
 
@@ -27,6 +27,8 @@ On most campuses a complaint travels through WhatsApp groups, paper registers an
 **Activity tracking**
 - Every complaint gets a unique ticket ID such as `RX-261109-K7Q2`
 - Every change (created, status changed, department assigned, comment) is stored as an activity row with who did it, the old value, the new value and a note
+
+See [REFLECTION.md](./REFLECTION.md) for key decisions and challenges.
 
 ## Tech stack
 
@@ -138,7 +140,7 @@ Sign in with the seeded admin, or register a normal student account on the Regis
 - Build command: `npm install`
 - Start command: `npm start`
 - Environment: every variable from the table above. Set `CLIENT_URL` to your Vercel URL after step 4 and redeploy.
-- After the first deploy, open the Render shell and run `npm run seed:admin` (or add the admin by registering with `ADMIN_SIGNUP_CODE`).
+- Render's free plan has no shell, so create the first admin by running `npm run seed:admin` locally with the production `MONGO_URI` in `server/.env`. Or use `ADMIN_SIGNUP_CODE` on the Register page.
 - Render's free plan sleeps after inactivity, so the first request can take about 30 seconds. Open `/api/health` before a demo to wake it.
 
 **4. Frontend on Vercel.** Import the same repo.
